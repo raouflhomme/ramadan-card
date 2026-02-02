@@ -1,4 +1,4 @@
-import { ImageResponse } from 'next/server';
+import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
 
@@ -61,3 +61,4 @@ export async function GET(request: Request) {
     return new Response(`Failed to generate image`, { status: 500 });
   }
 }
+
