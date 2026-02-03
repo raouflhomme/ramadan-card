@@ -1,4 +1,4 @@
-import { ImageResponse } from 'next/server';
+import { ImageResponse } from 'next/og'; // تصحيح الاستيراد هنا
 
 export const runtime = 'edge';
 
@@ -6,10 +6,9 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     
-    // استلام الاسم مرة واحدة فقط
+    // استلام الاسم
     const name = searchParams.get('name')?.slice(0, 100) || 'ضيف كريم';
     
-    // تصميم الصورة (بدون تحميل خطوط خارجية لتجنب المشاكل)
     return new ImageResponse(
       (
         <div
@@ -20,10 +19,10 @@ export async function GET(request: Request) {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: '#047857', // خلفية خضراء
+            backgroundColor: '#047857', 
             backgroundImage: 'radial-gradient(circle at 25px 25px, rgba(255,255,255,0.2) 2%, transparent 0%)',
             backgroundSize: '100px 100px',
-            fontFamily: 'sans-serif', // خط آمن وموجود في كل الأنظمة
+            fontFamily: 'sans-serif',
           }}
         >
           {/* طبقة التعتيم */}
@@ -39,7 +38,7 @@ export async function GET(request: Request) {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            border: '4px solid #FFD700', // إطار ذهبي
+            border: '4px solid #FFD700',
             borderRadius: 20,
             padding: '40px 60px',
             backgroundColor: 'rgba(255, 255, 255, 0.95)',
@@ -64,7 +63,6 @@ export async function GET(request: Request) {
       {
         width: 1200,
         height: 630,
-        // لا نحتاج لتعريف fonts هنا لأننا نستخدم خط النظام
       }
     );
   } catch (e: any) {
